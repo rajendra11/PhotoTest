@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PhotoTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    
+    
+    <string name="CLIENT_ID">ce8f5e1403ba4e83a6a14a9e0633b908</string>
+    <string name="CLIENT_SECRET">8912558b1ba74cb08a111cf98869b92b</string>
+    <string name="CALLBACK_URL">http://gsrti.com</string>
+
+</resources>
