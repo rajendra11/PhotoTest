@@ -12,10 +12,4 @@ The photos are displayed in GridView in the order big,small,small, big,small,sma
 Select any photo and tap on it to enlarge.
 
 
-Notes:
-
-Infinite scrolling not implemented because the URL retrieving upto 20 photos only. can be implemented later.
-Drag and drop on to be implemented on gridview to reordering of photos
-
-
 
