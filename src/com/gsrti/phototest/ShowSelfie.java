@@ -1,3 +1,6 @@
+/*
+ * rajendra
+ */
 package com.gsrti.phototest;
 
 import android.annotation.SuppressLint;
@@ -9,9 +12,16 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ShowSelfie.
+ */
 public class ShowSelfie extends Activity implements OnTouchListener {
 
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -21,6 +31,9 @@ public class ShowSelfie extends Activity implements OnTouchListener {
 
 	}
 
+	/**
+	 * Initialize the objects.
+	 */
 	private void initShowSelfie() {
 		Intent selfIntent = getIntent();
 		int pos = selfIntent.getIntExtra("position", 0);
@@ -30,18 +43,27 @@ public class ShowSelfie extends Activity implements OnTouchListener {
 		selfieView.setOnTouchListener(this);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onDestroy()
+	 */
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.view.View.OnTouchListener#onTouch(android.view.View, android.view.MotionEvent)
+	 */
 	@SuppressLint("NewApi")
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {

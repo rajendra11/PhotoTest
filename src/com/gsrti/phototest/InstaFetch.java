@@ -1,3 +1,6 @@
+/*
+ * rajendra
+ */
 package com.gsrti.phototest;
 
 import java.io.BufferedReader;
@@ -19,27 +22,57 @@ import android.util.Log;
 
 import com.gsrti.phototest.InstaLogin.InstaDialogListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InstaFetch.
+ */
 public class InstaFetch {
 
+	/** The Constant TAG. */
 	private static final String TAG = InstaFetch.class.getSimpleName();
 
+	/** The session object to store current user data. */
 	private StoreInstaData mSession;
+	
+	/** The dialog object to display login dialog screen. */
 	private InstaLogin mDialog;
+	
+	/** The listener object for OAuth. */
 	private OAuthListener mListener;
+	
+	/** The progressdialog object to display progress bar. */
 	private ProgressDialog mProgress;
+	
+	/** The authentication url. */
 	private String mAuthUrl;
 
+	/** The access token . */
 	private String mAccessToken;
+	
+	/** The context object. */
 	private Context mContext;
 
+	/** The instagram client id . */
 	private String mClientId;
+	
+	/** The insntagram client secret key. */
 	private String mClientSecret;
 
+	/** The callback url after authentication. */
 	public static String CALLBACK_URL = "";
+	
+	/** The Constant AUTH_URL. */
 	private static final String AUTH_URL = "https://api.instagram.com/oauth/authorize/";
+	
+	/** The Constant TOKEN_URL. */
 	private static final String TOKEN_URL = "https://api.instagram.com/oauth/access_token";
 
 
+	/**
+	 * Instantiates a new insta fetch.
+	 *
+	 * @param context the context
+	 */
 	public InstaFetch(Context context) {
 
 		mContext = context;
@@ -71,6 +104,12 @@ public class InstaFetch {
 		mProgress.setCancelable(false);
 	}
 
+	/**
+	 * Gets the access token.
+	 *
+	 * @param code the code
+	 * @return the access token
+	 */
 	private void getAccessToken(final String code) {
 		mProgress.setMessage("Getting access token ...");
 		mProgress.show();
@@ -122,6 +161,7 @@ public class InstaFetch {
 		}.start();
 	}
 
+	/** create handler. */
 	private Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -132,35 +172,75 @@ public class InstaFetch {
 		}
 	};
 
+	/**
+	 * Checks for access token.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean hasAccessToken() {
 		return (mAccessToken == null) ? false : true;
 	}
 
+	/**
+	 * Sets the listener.
+	 *
+	 * @param listener the new listener
+	 */
 	public void setListener(OAuthListener listener) {
 		mListener = listener;
 	}
 
+	/**
+	 * Gets the user name.
+	 *
+	 * @return the user name
+	 */
 	public String getUserName() {
 		return mSession.getUsername();
 	}
 
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public String getId() {
 		return mSession.getId();
 	}
 
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
 		return mSession.getName();
 	}
 
+	/**
+	 * Gets the access token.
+	 *
+	 * @return the access token
+	 */
 	public String getAccessToken() {
 		return mSession.getAccessToken();
 	}
 
+	/**
+	 * Authorize.
+	 */
 	public void authorize() {
 
 		mDialog.show();
 	}
 
+	/**
+	 * Stream to string method to create string from URL.
+	 *
+	 * @param is the is
+	 * @return the string
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private String streamToString(InputStream is) throws IOException {
 		String str = "";
 
@@ -187,6 +267,9 @@ public class InstaFetch {
 		return str;
 	}
 
+	/**
+	 * Reset access token.
+	 */
 	public void resetAccessToken() {
 		if (mAccessToken != null) {
 			mSession.resetAccessToken();
@@ -194,7 +277,22 @@ public class InstaFetch {
 		}
 	}
 
+	/**
+	 * The listener interface for receiving OAuth events.
+	 * The class that is interested in processing a OAuth
+	 * event implements this interface, and the object created
+	 * with that class is registered with a component using the
+	 * component's <code>addOAuthListener<code> method. When
+	 * the OAuth event occurs, that object's appropriate
+	 * method is invoked.
+	 *
+	 * @see OAuthEvent
+	 */
 	public interface OAuthListener {
+		
+		/**
+		 * On success.
+		 */
 		public abstract void onSuccess();
 	}
 }

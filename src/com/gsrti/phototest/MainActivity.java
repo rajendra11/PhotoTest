@@ -1,3 +1,6 @@
+/*
+ * rajendra
+ */
 package com.gsrti.phototest;
 
 import java.io.BufferedReader;
@@ -30,24 +33,43 @@ import android.widget.RelativeLayout;
 
 import com.gsrti.phototest.InstaFetch.OAuthListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainActivity.
+ */
 public class MainActivity extends Activity {
 
+	/** The m inst obj for Instafetch class. */
 	private InstaFetch mInstObj;
 
+	/** The Constant TAG for debugging. */
 	private static final String TAG = MainActivity.class.getSimpleName();
 
+	/** The list of selfie items. */
 	private List<Selfie> selfieItems = new ArrayList<Selfie>();
+	
+	/** The grid view. */
 	private GridView gridView;;
 
+	/** The selfie bitmpap images array. */
 	public static Bitmap[] selfieImages;
 
+	/** The slefie tag url to fetch images from instagram with hashtag selfie. */
 	private String SLEFIE_TAG_URL = "https://api.instagram.com/v1/tags/selfie/media/recent?access_token=";
 	
+	/** The x,y values to save the current touch positions. */
 	int x,y;
+	
+	/** The parms. */
 	private RelativeLayout.LayoutParams parms;
+	
+	/** The boolean to check item is dragging or not. */
 	private boolean onTheMove=false;
 
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +80,9 @@ public class MainActivity extends Activity {
 		callInstagram();
 	}
 
+	/**
+	 * Initialize the variables.
+	 */
 	public void init() {
 		gridView = (GridView) findViewById(R.id.gridView1);
 
@@ -151,6 +176,9 @@ public class MainActivity extends Activity {
 
 	}
 
+	/**
+	 * Call instagram to authenticate and fetch images.
+	 */
 	public void callInstagram() {
 		mInstObj = new InstaFetch(this);
 
@@ -172,14 +200,24 @@ public class MainActivity extends Activity {
 
 	}
 
+	/**
+	 * Display images on grid view.
+	 */
 	public void displayImages() {
 		gridView.setAdapter(new GridAdapter(this, selfieItems, selfieImages));
 	}
 
+	/**
+	 * The Class AsyncTaskRunner to download images in back end thread.
+	 */
 	private class AsyncTaskRunner extends AsyncTask<String, String, String> {
 
+		/** The resp. */
 		private String resp;
 
+		/* (non-Javadoc)
+		 * @see android.os.AsyncTask#doInBackground(java.lang.Object[])
+		 */
 		@Override
 		protected String doInBackground(String... params) {
 			try {
@@ -206,23 +244,38 @@ public class MainActivity extends Activity {
 			return resp;
 		}
 
+		/* (non-Javadoc)
+		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+		 */
 		@Override
 		protected void onPostExecute(String result) {
 
 			displayImages();
 		}
 
+		/* (non-Javadoc)
+		 * @see android.os.AsyncTask#onPreExecute()
+		 */
 		@Override
 		protected void onPreExecute() {
 
 		}
 
+		/* (non-Javadoc)
+		 * @see android.os.AsyncTask#onProgressUpdate(java.lang.Object[])
+		 */
 		@Override
 		protected void onProgressUpdate(String... text) {
 
 		}
 	}
 
+	/**
+	 * Gets the bitmap from url.
+	 *
+	 * @param src the src
+	 * @return the bitmap from url
+	 */
 	public static Bitmap getBitmapFromURL(String src) {
 		try {
 			URL url = new URL(src);
@@ -239,6 +292,12 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Gets the selfie photos using the url.
+	 *
+	 * @param accessToken the access token
+	 * @return the selfie photos
+	 */
 	public void getSelfiePhotos(String accessToken) {
 		try {
 
